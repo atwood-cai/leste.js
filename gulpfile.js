@@ -36,6 +36,9 @@ gulp.task('concat-all', function() {
     } catch(e) {
     }
     gulp.src(fileList)
+    .pipe(gulp.dest(tmpPath))
+    .pipe(plugins.uglify())
+    .pipe(plugins.concat('leste.min.js'))
     .pipe(gulp.dest(tmpPath));
 
     gulp.src(fileList)

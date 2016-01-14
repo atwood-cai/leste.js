@@ -23,6 +23,7 @@ mv ../leste_js_filelist static/js/src
 
 git add ./
 git commit -m "$MSG" ./
+git push origin gh-pages
 
 git checkout master
 
