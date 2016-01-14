@@ -69,12 +69,7 @@
                 return me[innerHTML];
             }
 
-            if (arg[0] instanceof Node === true) {
-                me[innerHTML] = '';
-                me.appendChild(arg[0]);
-            } else {
-                me[innerHTML] = arg[0];
-            }
+            me[innerHTML] = arg[0].toString();
 
             return me;
         },

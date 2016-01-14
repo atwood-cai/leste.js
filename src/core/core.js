@@ -57,17 +57,25 @@
         },
 
         extend: function(out) {
-            var args = arguments, arg;
+            var args = arguments, arg, start = 1;
             out = out || {};
 
-            for (var i = 1; i < args.length; i++) {
+            if(typeof args[0] == 'boolean') {
+                start = 2;
+            }
+
+            for (var i = start; i < args.length; i++) {
                 arg = args[i];
                 if (!arg)
                     continue;
 
                 for (var key in arg) {
-                    if (arg.hasOwnProperty(key))
-                        out[key] = arg[key];
+                    if (arg.hasOwnProperty(key)) {
+                        if (start == 2 && typeof arg[key] === 'object')
+                           arguments.callee(out[key], arg[key]);
+                        else
+                            out[key] = arg[key];
+                    }
                 }
             }
 
