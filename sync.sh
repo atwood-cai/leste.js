@@ -18,6 +18,8 @@ git push origin master
 git checkout gh-pages
 
 mv -f ../leste_js_filelist_tmp.js static/js/file.js
+
+git rm -rf static/js/src
 mv ../leste_js_filelist static/js/src
 
 
