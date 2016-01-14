@@ -1,0 +1,1 @@
+var fileList=[["Core","core.js"],["Date","Date.default.js"],["Element","Element.default.js"],["Element","Element.manage.js",2],["Element","Element.classList.js",2],["NodeList","NodeList.default.js"],["Event","Event.default.js"],["Event","Event.touch.js",6],["Other","Polyfill.promise.js"],["Other","Polyfill.fetch.js",8]]
