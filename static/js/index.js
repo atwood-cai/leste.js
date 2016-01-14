@@ -118,7 +118,7 @@ $.ready(function() {
         });
 
         Promise.all(files.map(function(file) {
-            return fetch('../build/' + file);
+            return fetch('static/js/src/' + file);
         })).then(function(responses) {
             Promise.all(responses.map(function(res) {
                 return res.text();
