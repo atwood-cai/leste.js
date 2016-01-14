@@ -21,8 +21,8 @@ var files = [
     ['other', 'polyfill.fetch.js', 8]
 ];
 
+gulp.task('concat-all', function() {
 
-gulp.task('default', function() {
     var fileList = files.map(file => 'src/' + file[0] + '/' + file[1]);
     var path = 'dist/';
     gulp.src(fileList)
@@ -33,5 +33,13 @@ gulp.task('default', function() {
     .pipe(plugins.uglify())
     .pipe(plugins.concat('leste.min.js'))
     .pipe(gulp.dest(path));
+});
+
+gulp.task('generate-filelist', function() {
+
+    fs.writeFileSync('../leste_js_filelist_tmp.js', 'var fileList = ' + JSON.stringify(files));
 
 });
+
+
+gulp.task('default', ['concat-all', 'generate-filelist']);
