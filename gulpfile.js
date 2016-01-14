@@ -29,6 +29,15 @@ gulp.task('concat-all', function() {
     .pipe(plugins.concat('leste.js'))
     .pipe(gulp.dest(path));
 
+
+    var tmpPath = 'leste_js_filelist/';
+    try {
+        fs.mkdirSync(tmpPath);
+    } catch(e) {
+    }
+    gulp.src(fileList)
+    .pipe(gulp.dest(tmpPath));
+
     gulp.src(fileList)
     .pipe(plugins.uglify())
     .pipe(plugins.concat('leste.min.js'))
@@ -40,6 +49,5 @@ gulp.task('generate-filelist', function() {
     fs.writeFileSync('../leste_js_filelist_tmp.js', 'var fileList = ' + JSON.stringify(files));
 
 });
-
 
 gulp.task('default', ['concat-all', 'generate-filelist']);
