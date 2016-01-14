@@ -24,7 +24,7 @@
                 {{~it.list:f}}
                     {{? f[1] == i}}
                         <label for="{{=f[0]}}">
-                            <input type="{{= (i=='Core' ? 'radio' : 'checkbox')}}" id="{{=f[0]}}" {{= i=='Core' ? 'checked="true"': ''}}"/>
+                            <input type="{{= (i=='core' ? 'radio' : 'checkbox')}}" id="{{=f[0]}}" {{= i=='core' ? 'checked="true"': ''}}"/>
                             {{=f[2].match(/\b(\w+)\b\.js/)[1]}}
                         </label>
                     {{?}}
