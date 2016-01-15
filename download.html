@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,minimum-scale=1.0, maximum-scale=1.0,user-scalable=no" >
+    <link rel="stylesheet" href="static/css/common.css" />
+    <link rel="stylesheet" href="static/css/download.css" />
+</head>
+<body>
+    <div class="hd">
+        <div class="wrap">
+            <a href="/" class="fl logo">Leste.js</a>
+            <ul class="fr">
+                <li>
+                    <a href="download.html">Download</a>
+                </li>
+                <li>
+                    <a href="doc.html">Document</a>
+                </li>
+                <li>
+                    <a href="https://github.com/atwood-cai/leste.js">Github</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="bd">
+        <form action="" class="get-lib fl">
+
+        </form>
+        <div class="code">
+            <textarea id="combined" name="combined"></textarea>
+            <a href="javascript:;" class="btn combine">Combine</a>
+            <p class="length"></p>
+        </div>
+    </div>
+    <div class="ft"></div>
+    <script type="text/x-dot-template" id="filesTpl">
+        {{~it.group:i}}
+            <section>
+                <h3>{{=i}}:</h3>
+                {{~it.list:f}}
+                    {{? f[1] == i}}
+                        <label for="{{=f[0]}}">
+                            <input type="{{= (i=='core' ? 'radio' : 'checkbox')}}" id="{{=f[0]}}" {{= i=='core' ? 'checked="true"': ''}}"/>
+                            {{=f[2].match(/\b(\w+)\b\.js/)[1]}}
+                        </label>
+                    {{?}}
+                {{~}}
+            </section>
+        {{~}}
+    </script>
+    <script src="static/js/src/leste.min.js"></script>
+    <script src="static/js/lib/doT.min.js"></script>
+    <script src="static/js/lib/uglifyjs.js"></script>
+    <script src="static/js/file.js"></script>
+    <script src="static/js/index.js"></script>
+</body>
+</html>

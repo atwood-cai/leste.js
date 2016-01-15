@@ -1,0 +1,50 @@
+.bd {
+    height: 100vh;
+    min-height: 700px;
+    text-align: center;
+    position: relative;
+}
+
+.bd .center {
+    position: absolute;
+    width: 100%;
+}
+
+
+h1 {
+    font-size: 56px;
+    font-weight: 200;
+}
+
+h2 {
+    font-size: 28px;
+    font-weight: 400;
+    color: #aeaeae;
+}
+
+.bd .btn {
+    margin-top: 50px;
+    font-size: 30px;
+    padding: 10px 30px;
+
+}
+
+.bd {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    min-height: 100%;
+    max-width: 100%;
+    height: auto;
+    z-index: 0;
+}
+
+@media (max-width: 750px) {
+    h1 {
+        font-size: 20px;
+    }
+    h2 {
+        font-size: 16px;
+    }
+}

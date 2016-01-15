@@ -2,9 +2,9 @@
 
 ### Default
 
-#### **\$**
-\$(selector) ⇒ element
-\$(htmlString) ⇒ fragment
+#### **$**
+$(selector) ⇒ element
+$(htmlString) ⇒ fragment
 selector 即 CSS selector 。
 htmlString 为一段完整的 HTML 片段。
 ```
@@ -19,7 +19,7 @@ $('<div class="Hello"></div>')
 $('<div class="Hello"></div><div class="Hello"></div>')
 ```
 #### **$$**
-\$$(selector) ⇒ collection
+$$(selector) ⇒ collection
 selector 即 CSS selector
 ```
 //获取所有的 div
@@ -33,8 +33,8 @@ $.ready(function(args){ ... })
 
 #### **$.extend**
 
-\$.extend(target, [source, [source2, ...]])  ⇒ target
-\$.extend(true, target, [source, ...])  ⇒ target
+$.extend(target, [source, [source2, ...]])  ⇒ target
+$.extend(true, target, [source, ...])  ⇒ target
 
 如果第一个参数是 true 则为深拷贝，否则为浅拷贝。
 

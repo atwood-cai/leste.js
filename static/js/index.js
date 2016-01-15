@@ -88,25 +88,38 @@ $.ready(function() {
      */
     $$('input[type="checkbox"]').toArray().forEach(function(ele) {
         ele.on('change', function() {
-            var self = this;
-            var id = self.attr('id');
-            fileList.forEach(function(file, i) {
-                var require = file[3];
-                //require
-                if(self.checked === true && file[0] == id && require) {
-                    $('#' + fileList[require][0]).checked = true;
-                }
-
-                //relate
-                if(self.checked === false && require && fileList[require][0] == id) {
-                    $('#' + file[0]).checked = false;
-                }
-            });
         });
+    });
+
+    function select(self) {
+        var self = this;
+        var id = self.attr('id');
+        fileList.forEach(function(file, i) {
+            var require = file[3];
+            //require
+            if(self.checked === true && file[0] == id && require) {
+                $('#' + fileList[require][0]).checked = true;
+            }
+
+            //relate
+            if(self.checked === false && require && fileList[require][0] == id) {
+                $('#' + file[0]).checked = false;
+            }
+        });
+    }
+
+
+    $('form').delegate('input', 'click', function() {
+        select(this);
+        setTimeout(getCodes, 200);
     });
 
 
     $('.combine').on('click', function() {
+        getCodes();
+    });
+
+    function getCodes() {
         var checkedList = $$('input:checked');
         var files = checkedList.toArray().map(function(ele) {
 
@@ -123,13 +136,11 @@ $.ready(function() {
             Promise.all(responses.map(function(res) {
                 return res.text();
             })).then(function(texts) {
-
                 var code = uglify(texts.join(';'), uglifyOptions);
                 $('#combined').value = code;
                 $('.length').html(code.length);
             });
         });
-
-    });
+    }
 
 });
