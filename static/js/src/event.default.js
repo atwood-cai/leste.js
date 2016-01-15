@@ -27,7 +27,7 @@
             var self = this;
             self.on(type, function(e) {
                 if(e.target == this.find(selector)) {
-                    handler(e);
+                    handler.call(this, e);
                 }
             });
             return this;
@@ -45,18 +45,6 @@
         }
     };
 
-    ['on', 'off', 'trigger'][forEach](function(method) {
-
-        Node.prototype[method] = Extend[method];
-
-        /* NodeList 不扩展这些方法
-        NodeList.prototype[method] = function() {
-            var args = arguments;
-            this.toArray().map(function(ele) {
-                ele[method].apply(ele, args);
-            });
-        };*/
-
-    });
+    $.extend(Node.prototype, Extend);
 
 })();
