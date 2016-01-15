@@ -119,13 +119,8 @@
                 E($('#testId .child').attr('data-id')).equal('gg');
             });
 
-            it('html -> set a dom ', function() {
-                ele.html($('<a id="hh"></a>'));
-                E(ele.firstChild.nodeName.toLowerCase()).equal('a');
-            });
-
             it('find -> find child from parent', function() {
-                E(ele.find('a')[0].attr('id')).equal('hh');
+                E(ele.find('.child')[0].attr('data-id')).equal('gg');
             });
 
             it('css -> set background for element', function() {
@@ -203,23 +198,41 @@
         it('Node on', function(done) {
             document.body.on('click', function(e) {
                 E(e.data.data).to.equal(1);
-                document.body.off('click');
+                document.body.off('click', arguments.callee);
                 done();
             });
             document.body.trigger('click', {data: 1});
         });
 
         it('Node on("多个事件名")', function(done) {
-            document.body.on('click mousedown', function(e) {
+            var hand = function(e) {
                 E(e.data.data).to.equal(2);
-                document.body.off('click mousedown');
+                document.body.off('click', arguments.callee);
+                document.body.off('mousedown', arguments.callee);
                 done();
+            };
+            ['click', 'mousedown'].map(function(type){
+                document.body.on(type, hand);
             });
             document.body.trigger('mousedown', {data: 2});
         });
 
+        var c = 1;
+        it('delegate', function(done) {
+            document.body.delegate('#mocha', 'click', function(e) {
+                E(1).to.equal(1);
+                c++;
+                done();
+            });
+            $('#mocha ul').trigger('click');
+        });
 
-        it('Node trigger', function() {});
+        it('delegate off', function() {
+            document.body.off();
+            $('#mocha ul').trigger('click');
+            $('#mocha ul').trigger('click');
+            E(c).to.equal(2);
+        })
 
     });
 
