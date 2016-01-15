@@ -10,7 +10,7 @@
 <body>
     <div class="hd">
         <div class="wrap">
-            <a href="/" class="fl logo">Leste.js</a>
+            <a href="index.html" class="fl logo">Leste.js</a>
             <ul class="fr">
                 <li>
                     <a href="download.html">Download</a>
@@ -43,7 +43,7 @@
 
 
         function initMenu() {
-            var str = '<dl>' + $$('h2, h3').toArray().map((h, i) => {
+            var str = '<dl>' + $$('h2, h3').toArray().map(function(h, i) {
                 var tag = h.tagName.toLowerCase();
                 var str = '';
                 var link = '<a href="#' + h.id + '">' + h.innerHTML + '</a>';
@@ -64,12 +64,18 @@
         $('.menu-bar').on('tap', function(e) {
             $('.menu').classList.add('need-close');
             $('.menu').classList.add('show');
+            $('.menu').classList.add('showed');
         });
 
         $('.menu').on('tap', function(e) {
             //if(e.target.tagName.toLowerCase() == 'a' && this.classList.contains('need-close'))
-            if(this.classList.contains('need-close'))
+            if(this.classList.contains('need-close')) {
                 this.classList.remove('show');
+                var self = this;
+                setTimeout(function() {
+                self.classList.remove('showed');
+                    }, 299);
+            }
         });
 
     </script>

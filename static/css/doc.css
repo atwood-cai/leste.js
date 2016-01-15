@@ -59,11 +59,12 @@ dd a {
         left: 0;
         padding: 20px;
         -webkit-box-sizing: border-box;
-        background: rgba(0,0,0,.8);
+        background: #fff;
         z-index: 100;
         height: 100%;
         top: 0;
-        display: none;
+        -webkit-transform: translate(-100%, 0);
+        transform: translate(-100%, 0);
     }
 
     .content {
@@ -79,7 +80,24 @@ dd a {
 }
 
 .show {
-    display: block;
+    -webkit-animation: show ease .3s;
+}
+
+.showed {
+    -webkit-transform: translate(0, 0);
+    transform: translate(0, 0);
+}
+
+@-webkit-keyframes show {
+    0 {
+        -webkit-transform: translate(-100%, 0);
+        transform: translate(-100%, 0);
+    }
+
+    100% {
+        -webkit-transform: translate(0, 0);
+        transform: translate(0, 0);
+    }
 }
 
 
