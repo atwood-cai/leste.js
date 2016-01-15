@@ -26,7 +26,7 @@
         delegate: function(selector, type, handler) {
             var self = this;
             self.on(type, function(e) {
-                if(e.target == $(selector)) {
+                if(e.target == this.find(selector)) {
                     handler(e);
                 }
             });

@@ -57,17 +57,25 @@
         },
 
         extend: function(out) {
-            var args = arguments, arg;
+            var args = arguments, arg, start = 1;
             out = out || {};
 
-            for (var i = 1; i < args.length; i++) {
+            if(typeof args[0] == 'boolean') {
+                start = 2;
+            }
+
+            for (var i = start; i < args.length; i++) {
                 arg = args[i];
                 if (!arg)
                     continue;
 
                 for (var key in arg) {
-                    if (arg.hasOwnProperty(key))
-                        out[key] = arg[key];
+                    if (arg.hasOwnProperty(key)) {
+                        if (start == 2 && typeof arg[key] === 'object')
+                           arguments.callee(out[key], arg[key]);
+                        else
+                            out[key] = arg[key];
+                    }
                 }
             }
 
@@ -230,12 +238,7 @@
                 return me[innerHTML];
             }
 
-            if (arg[0] instanceof Node === true) {
-                me[innerHTML] = '';
-                me.appendChild(arg[0]);
-            } else {
-                me[innerHTML] = arg[0];
-            }
+            me[innerHTML] = arg[0].toString();
 
             return me;
         },
@@ -419,19 +422,11 @@
 
 (function() {
     var _handler = '__handlers',
-        removeEventListener = 'removeEventListener',
         forEach = 'forEach',
         filter = 'filter';
     var specialEvents = {};
     specialEvents.click = specialEvents.mousedown = specialEvents.mouseup = specialEvents.mousemove = 'MouseEvents';
 
-    function getEvents(type) {
-
-        return type.split(' ')
-            [filter](function(str) {
-                return str.trim();
-            });
-    }
 
     var Extend = {
 
@@ -440,41 +435,24 @@
          **/
         on: function(type, handler) {
             var self = this;
-
-            getEvents(type)[forEach](function(s) {
-                if(!self[_handler]) {
-                    self[_handler] = [];
-                }
-                self[_handler].push(handler);
-                self.addEventListener(s, handler, false);
-            });
-
+            self.addEventListener(type, handler, false);
             return self;
         },
 
         off: function(type, handler) {
             var self = this;
+            self.removeEventListener(type, handler);
+            return self;
+        },
 
-            getEvents(type)[forEach](function(s) {
-
-                if (handler) {
-                    self[removeEventListener](s, handler);
-
-                    //移除__events 对应的hanndler
-                    self[_handler][forEach](function(fun, i) {
-                        if(fun.toString() == handler.toString()) {
-                            self[_handler].splice(i, 1);
-                        }
-                    });
-
-                } else {
-                    self[_handler][forEach](function(fun, i) {
-                        self[removeEventListener](s, fun);
-                    });
+        delegate: function(selector, type, handler) {
+            var self = this;
+            self.on(type, function(e) {
+                if(e.target == this.find(selector)) {
+                    handler(e);
                 }
             });
-
-            return self;
+            return this;
         },
 
         trigger: function (evtStr, data) {
