@@ -1,27 +1,48 @@
+dl {
+    padding: 0 0 10px;
+    margin: 25px 0 0px;
+}
 dd {
-    margin-left: 1em;
     font-size: 14px;
 }
 
 dt {
+    font-size: 18px;
+    font-weight: 400;
 
+    border-bottom: 1px dashed rgba(0, 0, 0, 0.1);
+    display: block;
+    list-style: none;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+}
+
+dt a {
+    color: #525252;
+}
+
+dd a {
+    color: #f4645f;
 }
 
 .menu {
     width: 200px;
     position: fixed;
-    top: 40px;
+    top: 100px;
 }
 
 .content {
     margin-left: 220px;
+    border-left: 1px solid #dee0df;
+    padding-left: 60px;
+    padding-top: 50px;
 }
 
 .menu-bar {
     display: none;
     position: fixed;
     right: 20px;
-    top: 20px;
+    top: 110px;
     z-index: 99;
 
     border: none;
@@ -46,12 +67,15 @@ dt {
     }
 
     .content {
+        padding-left: 0;
         margin-left: 0;
+        border-left: 0;
     }
 
     .menu-bar {
         display: block;
     }
+
 }
 
 .show {

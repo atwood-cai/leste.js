@@ -24,20 +24,21 @@
         </div>
     </div>
     <div class="bd">
-        <form action="" class="get-lib fl">
+        <h2>Select extensions you need.</h2>
+        <form action="" class="get-lib">
 
         </form>
         <div class="code">
+            <a href="javascript:;" class="btn download">Download</a>
+            <span class="length"></span>
             <textarea id="combined" name="combined"></textarea>
-            <a href="javascript:;" class="btn combine">Combine</a>
-            <p class="length"></p>
         </div>
     </div>
     <div class="ft"></div>
     <script type="text/x-dot-template" id="filesTpl">
         {{~it.group:i}}
             <section>
-                <h3>{{=i}}:</h3>
+                <h3>{{=i}}</h3>
                 {{~it.list:f}}
                     {{? f[1] == i}}
                         <label for="{{=f[0]}}">

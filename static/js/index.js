@@ -92,7 +92,6 @@ $.ready(function() {
     });
 
     function select(self) {
-        var self = this;
         var id = self.attr('id');
         fileList.forEach(function(file, i) {
             var require = file[3];
@@ -115,10 +114,6 @@ $.ready(function() {
     });
 
 
-    $('.combine').on('click', function() {
-        getCodes();
-    });
-
     function getCodes() {
         var checkedList = $$('input:checked');
         var files = checkedList.toArray().map(function(ele) {
@@ -138,9 +133,10 @@ $.ready(function() {
             })).then(function(texts) {
                 var code = uglify(texts.join(';'), uglifyOptions);
                 $('#combined').value = code;
-                $('.length').html(code.length);
+                $('.length').html(code.length + 'Byte');
             });
         });
     }
 
+    getCodes();
 });
