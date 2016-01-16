@@ -43,7 +43,7 @@ $.ready(function() {
                 touchTimeout = setTime(function() {
                     touchTimeout = setTime(function() {
                         touchTimeout = null;
-                        touch.ele.trigger('tap', 'CustomEvent', {
+                        touch.ele.trigger('tap', {
                             touchstart: touch.last,
                             touchList: e.changedTouches
                         });
