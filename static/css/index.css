@@ -16,7 +16,7 @@ h1 {
     font-weight: 200;
 }
 
-h2 {
+.center p {
     font-size: 28px;
     font-weight: 400;
     color: #aeaeae;
@@ -40,11 +40,58 @@ h2 {
     z-index: 0;
 }
 
+.features li {
+    float: left;
+    width: 33%;
+    text-align: left;
+    padding-right: 20px;
+}
+
+.features {
+    width: 984px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: auto;
+    bottom: 60px;
+}
+
+.features h2 {
+    font-size: 24px;
+    color: #f4645f;
+}
+
+.features p {
+    line-height: 1.5;
+}
+
+
 @media (max-width: 750px) {
     h1 {
         font-size: 20px;
     }
-    h2 {
+    .bd .center p {
         font-size: 16px;
     }
+
+    .bd .center {
+        position: static;
+        -webkit-transform: translate(0, 0);
+        margin-top: 135px;
+    }
+
+    .features {
+        position: static;
+        margin-top: 30px;
+        padding-bottom: 20px;
+        width: 100%;
+    }
+
+    .features li {
+        padding-right: 0;
+        float: none;
+        width: 100%;
+    }
+
 }
+

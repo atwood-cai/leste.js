@@ -15,7 +15,7 @@
                 <li>
                     <a href="download.html">Download</a>
                 </li>
-                <li>
+                <li class="current">
                     <a href="doc.html">Document</a>
                 </li>
                 <li>
@@ -64,17 +64,12 @@
         $('.menu-bar').on('tap', function(e) {
             $('.menu').classList.add('need-close');
             $('.menu').classList.add('show');
-            $('.menu').classList.add('showed');
         });
 
         $('.menu').on('tap', function(e) {
             //if(e.target.tagName.toLowerCase() == 'a' && this.classList.contains('need-close'))
             if(this.classList.contains('need-close')) {
                 this.classList.remove('show');
-                var self = this;
-                setTimeout(function() {
-                self.classList.remove('showed');
-                    }, 299);
             }
         });
 

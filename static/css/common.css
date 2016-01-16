@@ -41,7 +41,7 @@ body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input
 html {
     /*font: 16px/1.6 Rockwell, Arvo, serif;*/
     font: 16px/1.6 "Source Sans Pro", sans-serif !important;
-    color: #333;
+    color: #525252;
     -webkit-font-smoothing: antialiased;
     height: 100%;
 }
@@ -62,7 +62,7 @@ a {
 }
 
 a:hover {
-    color: #773ded;
+    color: #e74430;
 }
 
 .wrap {
@@ -110,15 +110,20 @@ footer .heart {
 .btn {
     box-sizing: border-box;
     font-size: 14px;
-    color: #CFAADA;
+    color: #e74430;
+    border: 1px solid #e74430;
     text-decoration: none;
     text-align: center;
     line-height: 32px;
     display: inline-block;
     outline: none;
-    border: 1px solid #CFAADA;
-    border-radius: 17px;
+    border-radius: .3em;
     padding: 0 20px;
+}
+
+.btn:hover, .btn:focus {
+    color: #e74430;
+    border: 1px solid #e74430;
 }
 
 .bd {
@@ -181,4 +186,10 @@ footer .heart {
     .hd ul li {
         margin: 0 4px;
     }
+}
+
+ul li a:hover,
+.current a {
+    border-bottom: 2px solid #e74430;
+    padding-bottom: 34px;
 }
