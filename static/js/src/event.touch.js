@@ -44,7 +44,8 @@ $.ready(function() {
                     touchTimeout = setTime(function() {
                         touchTimeout = null;
                         touch.ele.trigger('tap', 'CustomEvent', {
-                            touchstart: touch.last
+                            touchstart: touch.last,
+                            touchList: e.changedTouches
                         });
                     }, 250);
                 }, 0);
