@@ -118,10 +118,10 @@ $.ready(function() {
         var checkedList = $$('input:checked');
         var files = checkedList.toArray().map(function(ele) {
 
-            var file = fileList.find(function(item) {
+            var file = fileList.filter(function(item) {
                 return item[0] == ele.id;
             });
-            return file[2];
+            return file[0][2];
 
         });
 
