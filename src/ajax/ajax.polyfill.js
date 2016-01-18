@@ -1,16 +1,28 @@
 (function() {
 
+    var onreadystatechange = 'onreadystatechange',
+        application = 'application',
+        js = 'javascript',
+        _text = 'text',
+        _contentType = 'contentType',
+        _headers = 'headers',
+        _XMLHttpRequest = 'XMLHttpRequest',
+        _overrideMimeType = 'overrideMimeType',
+        _timeout = 'timeout',
+        _crossDomain = 'crossDomain',
+        _status = 'status';
+
     function empty() {}
 
     var accepts = {
-        script: 'text/javascript, application/javascript, application/x-javascript',
-        json:   'application/json',
-        xml:    'application/xml, text/xml',
-        html:   'text/html',
-        text:   'text/plain'
-    };
+        script: _text + '/' + js + ', ' + application + '/' + js + ', ' + application + '/x-' + js,
+        json:   application + '/json',
+        xml:    application + '/xml, ' + _text + '/xml',
+        html:   _text + '/html',
+        text:   _text + '/plain'
+    },
 
-    var defaultSetting = {
+    defaultSetting = {
         // Default type of request
         type: 'GET',
         // Callback that is executed before request
@@ -22,19 +34,18 @@
         // Callback that is executed on request complete (both: error and success)
         complete: empty,
         // Transport
-        xhr: function() { return new window.XMLHttpRequest(); },
+        xhr: function() { return new window[_XMLHttpRequest](); },
         dataType: 'json',
-        // Whether the request is to another domain
-        timeout: 0,
         // Whether data should be serialized to string
         processData: true,
         // Whether the browser should be allowed to cache GET responses
         cache: true,
 
-        crossDomain: false,
-
         async: true,
     };
+
+    defaultSetting[_timeout] = 0;
+    defaultSetting[_crossDomain] = false;
 
     $.ajax = function(options) {
 
@@ -56,7 +67,7 @@
             headers[name.toLowerCase()] = [name, value];
         }
 
-        if (!settings.crossDomain) setHeader('X-Requested-With', 'XMLHttpRequest');
+        if (!settings[_crossDomain]) setHeader('X-Requested-With', _XMLHttpRequest);
 
         setHeader('Accept', mime || '*/*');
 
@@ -64,22 +75,22 @@
         if(mime.indexOf(',') > -1) {
             mime = mime.split(',', 2)[0];
         }
-        if(xhr.overrideMimeType) xhr.overrideMimeType(mime);
+        if(xhr[_overrideMimeType]) xhr[_overrideMimeType](mime);
 
 
-        if (settings.contentType || (settings.contentType !== false && settings.data && type!= 'GET'))
-            setHeader('Content-Type', settings.contentType || 'application/x-www-form-urlencoded');
+        if (settings[_contentType] || (settings[_contentType] !== false && settings.data && type!= 'GET'))
+            setHeader('Content-Type', settings[_contentType] || application + '/x-www-form-urlencoded');
 
-        if (settings.headers)
-            for (var name in settings.headers)
-                setHeader(name, settings.headers[name]);
+        if (settings[_headers])
+            for (var name in settings[_headers])
+                setHeader(name, settings[_headers][name]);
 
-        xhr.onreadystatechange = function() {
+        xhr[onreadystatechange] = function() {
             if (xhr.readyState == 4) {
-                xhr.onreadystatechange = empty;
+                xhr[onreadystatechange] = empty;
                 clearTimeout(abortTimeout);
                 var result, error = false;
-                if ((xhr.status >= 200 && xhr.status < 300) || xhr.status == 304 || (xhr.status == 0 && protocol == 'file:')) {
+                if ((xhr[_status] >= 200 && xhr[_status] < 300) || xhr[_status] == 304 || (xhr[_status] == 0 && protocol == 'file:')) {
                     dataType = dataType || mimeToDataType(settings.mimeType || xhr.getResponseHeader('content-type'));
                     result = xhr.responseText;
 
@@ -94,7 +105,7 @@
                     }
 
                 } else {
-                    ajaxError(xhr.statusText || null, xhr.status ? 'error' : 'abort', xhr, settings);
+                    ajaxError(xhr.statusText || null, xhr[_status] ? 'error' : 'abort', xhr, settings);
                 }
             }
         };
@@ -104,12 +115,12 @@
         for (var head in headers)
             xhr.setRequestHeader(head, headers[head]);
 
-        if (settings.timeout > 0)
+        if (settings[_timeout] > 0)
             abortTimeout = setTimeout(function(){
-                xhr.onreadystatechange = empty;
+                xhr[onreadystatechange] = empty;
                 xhr.abort();
-                ajaxError(null, 'timeout', xhr, settings);
-            }, settings.timeout);
+                ajaxError(null, _timeout, xhr, settings);
+            }, settings[_timeout]);
 
         // avoid sending empty string (#319)
         xhr.send(type == 'GET' ? null : (settings.data ? JSON.stringify(settings.data) : null));
