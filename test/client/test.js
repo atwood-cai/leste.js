@@ -236,4 +236,56 @@
 
     });
 
+    D('Ajax', function() {
+
+        it('get', function(done) {
+            $.ajax({
+                url: '../server/data.php',
+                dataType: 'json',
+                success: function(e) {
+                    E(e).to.equal('cool');
+                    done();
+                }
+            });
+        });
+
+
+        it('get with params', function(done) {
+            $.ajax({
+                url: '../server/data.php?data=123',
+                dataType: 'json',
+                success: function(e) {
+                    E(e).to.equal('get123');
+                    done();
+                }
+            });
+        });
+
+        it('post', function(done) {
+            $.ajax({
+                url: '../server/data.php',
+                type: 'post',
+                dataType: 'text',
+                success: function(e) {
+                    E(e).to.equal('cool');
+                    done();
+                }
+            });
+        });
+
+        it('post width params', function(done) {
+            $.ajax({
+                url: '../server/data.php',
+                type: 'post',
+                data: {data: 123},
+                dataType: 'text',
+                success: function(e) {
+                    E(e).to.equal('post123');
+                    done();
+                }
+            });
+        });
+
+    });
+
 })();
