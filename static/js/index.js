@@ -94,16 +94,26 @@ $.ready(function() {
     function select(self) {
         var id = self.attr('id');
         fileList.forEach(function(file, i) {
-            var require = file[3];
-            //require
-            if(self.checked === true && file[0] == id && require) {
-                $('#' + fileList[require][0]).checked = true;
-            }
+            if(!file[3]) return;
 
-            //relate
-            if(self.checked === false && require && fileList[require][0] == id) {
-                $('#' + file[0]).checked = false;
-            }
+            //找到关联的文件索引
+            var requires = file[3].map(function(item) {
+                item = item.replace(/\./g, '_');
+                return fileList.filter(function(a) {
+                    return a[0] == item;
+                })[0];
+            }).map(function(require) {
+
+                //require
+                if(self.checked === true && file[0] == id) {
+                    $('#' + require[0]).checked = true;
+                }
+
+                //relate
+                if(self.checked === false && require && require[0] == id) {
+                    $('#' + file[0]).checked = false;
+                }
+            });
         });
     }
 
