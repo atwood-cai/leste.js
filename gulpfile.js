@@ -17,7 +17,7 @@ var files = [
     ['event', 'event.default.js'],
     ['event', 'event.touch.js', ['event.default.js']],
 
-    ['ajax', 'ajax.polyfill.js'],
+    ['async', 'async.ajax.js'],
 
     ['other', 'polyfill.promise.js'],
     ['other', 'polyfill.fetch.js', ['polyfill.promise.js']]
