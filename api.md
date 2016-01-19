@@ -52,7 +52,7 @@ $.extend(target, source)
 ### Default
 
 #### **format**
-new Date().format('Y-m-d H:i:s') => "2016-01-01 12:00:00"
+new Date().format('Y-m-d H:i:s') ⇒ "2016-01-01 12:00:00"
 
 其中 Y、m、d、H、i、s 分别是年、月、日、时、分、秒的占位符，可随意组合成需要的格式。
 
@@ -152,7 +152,7 @@ ele.classList.remove('C')
 //ele => <a class="A B"></a>
 ```
 #### **toggle**
-ele.classList.toggle(className) => true/false
+ele.classList.toggle(className) ⇒ true/false
 
 ele 已有该 className 返回 false
 ele 没有该 className 返回 true
@@ -266,7 +266,7 @@ ele.on('tap', function(e) {
 ## NodeList
 ### Default
 #### **toArray**
-list.toArray() => collection
+list.toArray() ⇒ collection
 
 将 nodelist 返回一个数组集合，之后便能使用数组的方法。
 ```
@@ -279,27 +279,39 @@ $$('div').toArray()
 ### Ajax
 #### **ajax**
 $.ajax(options)  ⇒ XMLHttpRequest
+
 Perform an Ajax request. It can be to a local resource, or cross-domain via HTTP access control support in browsers or JSONP.
 
 Options:
 
 `type` (default: “GET”): HTTP request method (“GET”, “POST”, or other)
+
 `url` (default: current URL): URL to which the request is made
+
 `data` (default: none): data for the request; for GET requests it is appended to query string of the URL. Non-string objects will get serialized with $.param
+
 `contentType` (default: “application/x-www-form-urlencoded”): the Content-Type of the data being posted to the server (this can also be set via headers). Pass false to skip setting the default value.
+
 `mimeType` (default: none): override the MIME type of the response. v1.1+
+
 `dataType` (default: none): response type to expect from the server. One of json, jsonp, script, xml, html, or text.
+
 `timeout` (default: 0): request timeout in milliseconds, 0 for no timeout
+
 `headers`: object of additional HTTP headers for the Ajax request
+
 `async` (default: true): set to false to issue a synchronous (blocking) request
+
 `username` & `password` (default: none): HTTP Basic authentication credentials.
 
+
 Ajax callbacks
+
 You can specify the following callback functions, which are given in order of execution:
 
-* `success(data, status, xhr)`: when request succeeds
+`success(data, status, xhr)`: when request succeeds
 
-* `error(xhr, errorType, error)`: if there is an error (timeout, parse error, or status code not in HTTP 2xx)
+`error(xhr, errorType, error)`: if there is an error (timeout, parse error, or status code not in HTTP 2xx)
 
 
 ```
