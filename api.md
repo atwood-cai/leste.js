@@ -275,6 +275,63 @@ $$('div').toArray()
 .forEach(function() {....})
 ```
 
+## Async
+### Ajax
+#### **ajax**
+$.ajax(options)  ⇒ XMLHttpRequest
+Perform an Ajax request. It can be to a local resource, or cross-domain via HTTP access control support in browsers or JSONP.
+
+Options:
+
+`type` (default: “GET”): HTTP request method (“GET”, “POST”, or other)
+`url` (default: current URL): URL to which the request is made
+`data` (default: none): data for the request; for GET requests it is appended to query string of the URL. Non-string objects will get serialized with $.param
+`contentType` (default: “application/x-www-form-urlencoded”): the Content-Type of the data being posted to the server (this can also be set via headers). Pass false to skip setting the default value.
+`mimeType` (default: none): override the MIME type of the response. v1.1+
+`dataType` (default: none): response type to expect from the server. One of json, jsonp, script, xml, html, or text.
+`timeout` (default: 0): request timeout in milliseconds, 0 for no timeout
+`headers`: object of additional HTTP headers for the Ajax request
+`async` (default: true): set to false to issue a synchronous (blocking) request
+`username` & `password` (default: none): HTTP Basic authentication credentials.
+
+Ajax callbacks
+You can specify the following callback functions, which are given in order of execution:
+
+* `success(data, status, xhr)`: when request succeeds
+
+* `error(xhr, errorType, error)`: if there is an error (timeout, parse error, or status code not in HTTP 2xx)
+
+
+```
+$.ajax({
+  type: 'GET',
+  url: '/projects',
+  // data to be added to query string:
+  // type of data we are expecting in return:
+  dataType: 'json',
+  timeout: 300,
+  context: $('body'),
+  success: function(data){
+    // Supposing this JSON payload was received:
+    //   {"project": {"id": 42, "html": "<div>..." }}
+    // append the HTML to context object.
+    this.append(data.project.html)
+  },
+  error: function(xhr, type){
+    alert('Ajax error!')
+  }
+})
+
+// post a JSON payload:
+$.ajax({
+  type: 'POST',
+  url: '/projects',
+  // post payload:
+  data: JSON.stringify({ name: 'Zepto.js' }),
+  contentType: 'application/json'
+})
+```
+
 ## Other
 ### promise polyfill
 [Promise A+ 的 polyfill](https://github.com/Financial-Times/polyfill-service/tree/master/polyfills/Promise)
