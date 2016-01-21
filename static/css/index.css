@@ -26,7 +26,6 @@ h1 {
     margin-top: 50px;
     font-size: 30px;
     padding: 10px 30px;
-
 }
 
 .bd {
@@ -71,7 +70,7 @@ h1 {
         font-size: 20px;
     }
     .bd .center p {
-        font-size: 16px;
+        font-size: 14px;
     }
 
     .bd .center {
@@ -91,6 +90,17 @@ h1 {
         padding-right: 0;
         float: none;
         width: 100%;
+    }
+    .features h2 {
+        font-size: 16px;
+    }
+    .features p {
+        font-size: 14px;
+    }
+    .bd .btn {
+        margin-top: 50px;
+        font-size: 20px;
+        padding: 5px 20px;
     }
 
 }
