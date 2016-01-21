@@ -37,7 +37,8 @@ dd a {
     margin-left: 220px;
     border-left: 1px solid #dee0df;
     padding-left: 60px;
-    padding-top: 50px;
+    padding-top: 30px;
+    padding-bottom: 30px;
 }
 
 .menu-bar {
