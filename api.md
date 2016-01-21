@@ -256,6 +256,9 @@ $('body').trigger('mylib:change', ['one', 'two'])
 ele.on('tap', function(e) {...})
 
 滑动距离超过 (30, 30) 不触发。
+回调参数 e 包含：
+e.data.touchstart 开始触摸的时间
+e.data.touchList
 ```
 ele.on('tap', function(e) {
     //能记录 touchstart 的时间戳
