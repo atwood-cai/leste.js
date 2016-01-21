@@ -69,10 +69,12 @@ h1 {
     width: 100%;
     bottom: 10px;
     left: 0;
+    font-size: 10px;
+    color: #666;
 }
 
 .ft a {
-    color: #f4645f;
+    color: #666;
 }
 
 @media (max-width: 750px) {
@@ -114,7 +116,6 @@ h1 {
         padding: 5px 20px;
     }
     .ft {
-        font-size: 14px;
         margin-top: 20px;
         position: static;
     }
