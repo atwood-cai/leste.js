@@ -12,6 +12,10 @@ label input {
     vertical-align: middle;
 }
 
+section p {
+    font-size: 12px;
+}
+
 textarea {
     display: block;
     width: 100%;
