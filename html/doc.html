@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Leste.js - document</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,minimum-scale=1.0, maximum-scale=1.0,user-scalable=no" >
+    <link rel="stylesheet" href="../static/css/common.css" />
+    <link rel="stylesheet" href="../static/css/markdown.css" />
+    <link rel="stylesheet" href="../static/css/doc.css" />
+</head>
+<body>
+    <div class="hd">
+        <div class="wrap">
+            <a href="index.html" class="fl logo">Leste.js</a>
+            <ul class="fr">
+                <li>
+                    <a href="download.html">Download</a>
+                </li>
+                <li class="current">
+                    <a href="doc.html">Document</a>
+                </li>
+                <li>
+                    <a href="https://github.com/atwood-cai/leste.js">Github</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="bd">
+        <a href="javascript:;" class="menu-bar">☰</a>
+        <div class="menu">
+        </div>
+        <div class="content markdown-body">
+        </div>
+    </div>
+    <script src="../static/js/lib/marked.js"></script>
+    <script src="../static/js/src/leste.min.js"></script>
+    <script>
+        fetch('api.md').then(function(res) {
+            res.text().then(function(text) {
+                $('.content').html(marked(text));
+                initMenu();
+            });
+        });
+
+
+        function initMenu() {
+            var str = '<dl>' + $$('h2, h3').toArray().map(function(h, i) {
+                var tag = h.tagName.toLowerCase();
+                var str = '';
+                var link = '<a href="#' + h.id + '">' + h.innerHTML + '</a>';
+                if(tag == 'h2') {
+                    str += (i == 0 ? '<dt>' : '</dl><dl><dt>') + link + '</dt>'
+                }
+
+                if(tag == 'h3') {
+                    str += '<dd>' + link + '</dd>'
+                }
+                return str;
+
+            }).join('') + '</dl>';
+
+            $('.menu').html(str);
+        }
+
+        $('.menu-bar').on('tap', function(e) {
+            $('.menu').classList.add('need-close');
+            $('.menu').classList.add('show');
+        });
+
+        $('.menu').on('tap', function(e) {
+            //if(e.target.tagName.toLowerCase() == 'a' && this.classList.contains('need-close'))
+            if(this.classList.contains('need-close')) {
+                this.classList.remove('show');
+            }
+        });
+
+    </script>
+    <script>
+var _hmt = _hmt || [];
+(function() {
+   var hm = document.createElement("script");
+     hm.src = "//hm.baidu.com/hm.js?41f7d1bb5570d24b4d5e34678512fea5";
+       var s = document.getElementsByTagName("script")[0]; 
+         s.parentNode.insertBefore(hm, s);
+         })();
+    </script>
+
+</body>
+</html>
