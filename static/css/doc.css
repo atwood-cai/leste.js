@@ -29,6 +29,8 @@ dd a {
     width: 200px;
     position: fixed;
     top: 100px;
+    bottom: 0;
+    overflow: auto;
 }
 
 .content {
