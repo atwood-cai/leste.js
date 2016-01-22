@@ -2,21 +2,21 @@
 
 ### [](https://github.com/jquery/jquery#modules)Modules
 
-* **Core-Default**
+* **Core-Default**    
     Contains basic methods.
-* **Date-Default**
+* **Date-Default**    
     Date format
-* **Element-Default**
+* **Element-Default**    
     Hide、attr、css... element
-* **Element-classList**
+* **Element-classList**    
     Polymer for element`s classList
-* **Element-manipulation**
+* **Element-manipulation**    
     Add | remove | replace element
-* **Event-Default**
+* **Event-Default**    
     Event handling via on() & off() | delegate() 
-* **Event-touch**
+* **Event-touch**    
     Fires tap events on touch devices. This works only `touch` (iOS, Android).
-* **NodeList-Default**
+* **NodeList-Default**    
     NodeList toArray()
-* **Async-Ajax**
+* **Async-Ajax**    
     XMLHttpRequest functionality
