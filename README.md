@@ -22,5 +22,5 @@
     XMLHttpRequest functionality
 
 ### Contribution Guides
-    Update later
+Update later
 
