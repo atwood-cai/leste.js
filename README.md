@@ -20,3 +20,7 @@
     NodeList toArray()
 * **Async-Ajax**    
     XMLHttpRequest functionality
+
+### Contribution Guides
+    Update later
+
