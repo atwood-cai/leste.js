@@ -1,6 +1,6 @@
 # [Leste.js](http://atwood-cai.github.io/leste.js/) - The last DOM library you'll ever need
 
-### [](https://github.com/jquery/jquery#modules)Modules
+### [Features](https://github.com/jquery/jquery#modules)
 
 * **Core-Default**    
     Contains basic methods.
